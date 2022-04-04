@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        
+
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,6 +42,9 @@
         android:id="@+id/navigationView"
         app:headerLayout="@layout/navigation"
         android:layout_gravity="start"
-        app:menu="@menu/menu_navigation"/>
+        app:menu="@menu/menu_navigation"
+        >
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

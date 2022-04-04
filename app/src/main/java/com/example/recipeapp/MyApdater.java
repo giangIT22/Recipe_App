@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +25,6 @@ public class MyApdater extends RecyclerView.Adapter<FoodViewHolder>{
     private Context mContext;
     private ArrayList<FoodData> myFoodList;
     private int lastPosition = -1;
-
 
     public MyApdater(Context mContext, ArrayList<FoodData> myFoodList) {
         this.mContext = mContext;
@@ -43,7 +43,6 @@ public class MyApdater extends RecyclerView.Adapter<FoodViewHolder>{
         Glide.with(mContext).load(myFoodList.get(i).getImage()).into(holder.imageView);
 //        holder.imageView.setImageResource(myFoodList.get(i).getImage());
         holder.mTitle.setText(myFoodList.get(i).getName());
-        holder.mDescription.setText(myFoodList.get(i).getDescription());
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,14 +93,13 @@ public class MyApdater extends RecyclerView.Adapter<FoodViewHolder>{
 class FoodViewHolder extends RecyclerView.ViewHolder
 {
     ImageView imageView;
-    TextView mTitle, mDescription;
+    TextView mTitle;
     CardView mCardView;
 
     public FoodViewHolder(@NonNull View itemView) {
         super(itemView);
         imageView = itemView.findViewById(R.id.ivImage);
         mTitle = itemView.findViewById(R.id.tvTitle);
-        mDescription = itemView.findViewById(R.id.tvDescription);
         mCardView = itemView.findViewById(R.id.myCardView);
     }
 }

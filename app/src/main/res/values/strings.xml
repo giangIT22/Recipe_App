@@ -2,9 +2,12 @@
     <string name="app_name">Recipe App</string>
     <string name="nav_home">Trang chủ</string>
     <string name="nav_favourite">Công thức nấu ăn yêu thích</string>
-    <string name="nav_account">Tài khoản</string>
-    <string name="nav_add_recipe">Thêm công thức</string>
     <string name="nav_change_password">Thay đổi mật khẩu</string>
+    <string name="nav_my_recipe">Công thức của tôi</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="tab_detail">Chi tiết</string>
+    <string name="tab_comment">Bình luận</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

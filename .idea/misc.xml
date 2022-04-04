@@ -3,16 +3,29 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/RecipeApp/app/src/main/res/drawable/border_bottom.xml" value="0.1585" />
+        <entry key="..\:/RecipeApp/app/src/main/res/drawable/cb_selector.xml" value="0.1585" />
+        <entry key="..\:/RecipeApp/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1585" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_detail.xml" value="0.2421875" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_login.xml" value="0.2421875" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_main2.xml" value="0.21557971014492755" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_register.xml" value="0.2391304347826087" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_test.xml" value="0.10104166666666667" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_update_recipe.xml" value="0.2421875" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_upload_recipe.xml" value="0.2421875" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/activity_upload_recipe2.xml" value="0.2421875" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/border1.xml" value="0.2391304347826087" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/fragment_coment.xml" value="0.2391304347826087" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/fragment_detail.xml" value="0.2391304347826087" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/fragment_home.xml" value="0.2391304347826087" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/fragment_my_recipe.xml" value="0.2391304347826087" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/navigation.xml" value="0.228125" />
         <entry key="..\:/RecipeApp/app/src/main/res/layout/recycler_row_item.xml" value="0.2" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/row_ingredients.xml" value="0.228125" />
+        <entry key="..\:/RecipeApp/app/src/main/res/layout/row_step.xml" value="0.2391304347826087" />
+        <entry key="..\:/RecipeApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2421875" />
+        <entry key="..\:/RecipeApp/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.2421875" />
         <entry key="..\:/RecipeApp/app/src/main/res/menu/menu_navigation.xml" value="0.2421875" />
       </map>
     </option>

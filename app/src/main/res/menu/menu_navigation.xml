@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:checkable="true"
         android:id="@+id/nav_home"
         android:title="@string/nav_home"></item>
     <item
+        android:checkable="true"
         android:id="@+id/nav_favourite"
         android:title="@string/nav_favourite"></item>
     <item
-        android:id="@+id/nav_account"
-        android:title="@string/nav_account"></item>
+        android:checkable="true"
+        android:id="@+id/nav_my_recipe"
+        android:title="@string/nav_my_recipe"></item>
     <item
-        android:id="@+id/nav_add_recipe"
-        android:title="@string/nav_add_recipe"></item>
-    <item
+        android:checkable="true"
         android:id="@+id/nav_change_pass"
         android:title="@string/nav_change_password"></item>
 </menu>

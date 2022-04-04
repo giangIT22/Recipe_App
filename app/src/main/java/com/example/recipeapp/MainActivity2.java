@@ -13,18 +13,30 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
+import com.example.recipeapp.fragment.DetailFragment;
 import com.example.recipeapp.fragment.HomeFragment;
+import com.example.recipeapp.fragment.MyRecipeFragment;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private DatabaseReference mDataBase;
     private DrawerLayout drawerLayout;
-    private static final int FRAGMENT_HOME = 0;
-    private static final int FRAGMENT_FAVOURITE = 1;
-    private static final int FRAGMENT_ACCOUNT = 2;
-    private static final int FRAGMENT_ADD_RECIPE = 3;
-    private static final int FRAGMENT_CHANGE_PASSWORD = 4;
+    private TextView userName;
+    private View view;
+    public static final int FRAGMENT_HOME = 0;
+    public static final int FRAGMENT_FAVOURITE = 1;
+    public static final int FRAGMENT_MY_RECIPE = 2;
+    public static final int FRAGMENT_CHANGE_PASS = 3;
+    public int currentFragment = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +50,24 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //get username of user was login
+        view = navigationView.getHeaderView(0);
+        userName = view.findViewById(R.id.userName);
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        mDataBase.child("user_name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userName.setText(snapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         replaceFragment(new HomeFragment());//default start app is into home
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);//set checked item
@@ -48,20 +76,24 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
 //    Choose item in menu and clode navigation when cliced on item
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_home:
+        int id = item.getItemId();
+
+        if (id == R.id.nav_home) {
+            if (currentFragment != FRAGMENT_HOME) {
                 replaceFragment(new HomeFragment());
-                drawerLayout.closeDrawers();
-                break;
-            case R.id.nav_favourite:
-                break;
-            case R.id.nav_account:
-                break;
-            case R.id.nav_add_recipe:
-                break;
-            case R.id.nav_change_pass:
-                break;
+                currentFragment = FRAGMENT_HOME;
+            }
+        } else if (id == R.id.nav_favourite) {
+
+        } else if (id == R.id.nav_my_recipe) {
+            if (currentFragment != FRAGMENT_MY_RECIPE) {
+                replaceFragment(new MyRecipeFragment());
+                currentFragment = FRAGMENT_MY_RECIPE;
+            }
+        } else {
+
         }
+
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

@@ -1,84 +1,65 @@
 package com.example.recipeapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.MenuItem;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.example.recipeapp.fragment.DetailFragment;
+import com.example.recipeapp.fragment.HomeFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.sql.DatabaseMetaData;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager.widget.ViewPager;
+
+import com.example.recipeapp.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends AppCompatActivity {
-    TextView tvDescription;
-    TextView tvName;
-    ImageView foodImage;
-    String key = "";
-    String urlImage = "";
+    private BottomNavigationView bottomNavigationView;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
-        //show Recipe detail info
-        this.showRecipeDetail();
-    }
 
-    public void showRecipeDetail() {
-        this.tvDescription = (TextView) findViewById(R.id.tvDetailDescription);
-        this.tvName = (TextView) findViewById(R.id.tvDetailName);
-        this.foodImage = (ImageView) findViewById(R.id.imageDetal);
-        Bundle bundle = getIntent().getBundleExtra("data");
+        bottomNavigationView = findViewById(R.id.nav_view);
+        viewPager = findViewById(R.id.viewPager);
+        setUpViewPager();
 
-        if (bundle != null) {
-            tvName.setText(bundle.getString("name"));
-            tvDescription.setText(bundle.getString("description"));
-            this.key =  bundle.getString("key");
-            this.urlImage = bundle.getString("image");
-
-            Glide.with(DetailActivity.this).load(bundle.getString("image")).into(foodImage);
-        }
-    }
-
-    //delete recipe
-    public void btn_DeleteRecipe(View view) {
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Recipe");
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-
-        StorageReference storageReference = storage.getReferenceFromUrl(this.urlImage);
-        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public void onSuccess(Void unused) {
-                reference.child(key).removeValue();
-                Toast.makeText(DetailActivity.this, "Recipe deleted", Toast.LENGTH_LONG).show();
-//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_detail:
+                        Bundle bundle = getIntent().getBundleExtra("data");
+                        DetailFragment detailFragment = new DetailFragment();
+                        detailFragment.setArguments(bundle);
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.navigation_comment:
+                        viewPager.setCurrentItem(0);
+                        break;
+                }
+                return true;
             }
         });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
-    //reidrect to screen update recipe
-    public void btn_UpdateRecipe(View view) {
-        Intent intent = new Intent(getApplicationContext(), UpdateRecipe.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("recipeName", tvName.getText().toString());
-        bundle.putString("description", tvDescription.getText().toString());
-        bundle.putString("oldUrlImage", this.urlImage);
-        bundle.putString("key", this.key);
-        intent.putExtra("data", bundle);
-        startActivity(intent);
+    public void setUpViewPager()
+    {
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),
+                FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        viewPager.setAdapter(viewPagerAdapter);
     }
 }

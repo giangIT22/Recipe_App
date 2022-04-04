@@ -22,7 +22,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="title"
+            android:hint="Tên món ăn"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:textSize="20sp"
@@ -31,18 +31,84 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="Mô tả"
             android:layout_marginTop="10dp"
             android:padding="10dp"
             android:textSize="20sp"
             android:id="@+id/editTxtDescription"/>
-        
+
+        <!--ingredients-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Nguyên liệu"/>
+        <!--        list ingredients-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recylerViewIngredients"
+            android:scrollbars="vertical">
+        </androidx.recyclerview.widget.RecyclerView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/editTxtIngredient"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:hint="Nhập nguyên liệu"
+                android:layout_marginRight="10dp"/>
+            <Button
+                android:id="@+id/btnAddIngredient"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/text_color"
+                android:text="Thêm" />
+        </LinearLayout>
+
+        <!--Step-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Các bước"/>
+
+        <!--        list ingredients-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recylerViewStep"
+            android:scrollbars="vertical">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/tv_step"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:hint="Miêu tả bước làm "
+                android:layout_marginRight="10dp"/>
+            <Button
+                android:id="@+id/btn_add_step"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/text_color"
+                android:text="Thêm" />
+        </LinearLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Select image"
+            android:text="Chọn ảnh"
             android:textColor="#fff"
-            android:backgroundTint="#FF9800"
+            android:backgroundTint="@color/text_color"
             android:textSize="18sp"
             android:id="@+id/btnSelectImage"
             android:onClick="btn_SelectRecipeImage"/>
@@ -52,9 +118,9 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Upload"
+            android:text="Thêm công thức"
             android:textColor="#fff"
-            android:backgroundTint="#FF9800"
+            android:backgroundTint="@color/text_color"
             android:textSize="18sp"
             android:onClick="btn_uploadRecipe"/>
     </LinearLayout>

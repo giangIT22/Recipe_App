@@ -10,32 +10,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RecipeApp">
         <activity
-            android:name=".MainActivity2"
-            android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".UpdateRecipe"
-            android:exported="false" />
-        <activity
-            android:name=".UploadRecipe"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MainActivity2"/>
+            android:exported="true"
+            android:label="Chi tiết"
+            android:parentActivityName=".MainActivity2" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="true"
+            android:label="Trang chủ"
+            android:theme="@style/Theme.RecipeApp.NoActionBar">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Đăng nhập">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+                 <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+        </activity>
+        <activity
+            android:name=".UpdateRecipe"
+            android:exported="false"
+            android:label="Cập nhật" />
+        <activity
+            android:name=".UploadRecipe"
+            android:exported="false"
+            android:parentActivityName=".MainActivity2"
+            android:label="Thêm công thức"/>
     </application>
 
 </manifest>

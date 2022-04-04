@@ -1,86 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.viewpager.widget.ViewPager
+        android:layout_above="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:background="?android:attr/windowBackground"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/bottom_nav_menu" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
-            <TextView
-                android:id="@+id/toolbarTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:maxLines="1"
-                android:text="Công thức"
-                android:textAppearance="@android:style/TextAppearance.WindowTitle"
-                android:visibility="visible" />
-
-        </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-    <ImageView
-        android:id="@+id/imageDetal"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:src="@drawable/cake_2"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:id="@+id/tvDetailName"
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:text="Title"
-        android:padding="20dp"
-        android:textSize="19sp"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvDetailDescription"
-        android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:text="Description"
-        android:padding="20dp"
-        android:textSize="19sp"
-        android:layout_height="wrap_content"/>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-
-        <Button
-            android:id="@+id/btnUpdate"
-            android:layout_width="140dp"
-            android:layout_height="60dp"
-            android:text="Update"
-            android:textSize="22sp"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="20dp"
-            android:onClick="btn_UpdateRecipe">
-
-        </Button>
-        
-        <Button
-            android:id="@+id/btnDeleteRecipe"
-            android:layout_width="140dp"
-            android:layout_height="60dp"
-            android:text="Delete"
-            android:textSize="22sp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="20dp"
-            android:onClick="btn_DeleteRecipe">
-
-        </Button>
-    </RelativeLayout>
-</LinearLayout>
+</RelativeLayout>

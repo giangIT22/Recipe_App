@@ -97,15 +97,15 @@ public class UpdateRecipe extends AppCompatActivity {
                 while (!uriTask.isComplete());
                 Uri urlImage = uriTask.getResult();//get url image from firebase
                 imageUrl = urlImage.toString();
-                FoodData foodData = new FoodData(recipeName, recipeDescription, imageUrl);
-                databaseReference.setValue(foodData).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageUrl);
-                        storageReference.delete();
-                        Toast.makeText(UpdateRecipe.this, "Recipe Updated", Toast.LENGTH_SHORT);
-                    }
-                });
+//                FoodData foodData = new FoodData(recipeName, recipeDescription, imageUrl);
+//                databaseReference.setValue(foodData).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        StorageReference storageReference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageUrl);
+//                        storageReference.delete();
+//                        Toast.makeText(UpdateRecipe.this, "Recipe Updated", Toast.LENGTH_SHORT);
+//                    }
+//                });
                 progressDialog.dismiss();
             }
         }).addOnFailureListener(new OnFailureListener() {
