@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".MainActivity2">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search"
+        android:textSize="22sp"
+        android:id="@+id/editTxtSearchRecipe"
+        android:layout_margin="15dp">
+
+    </EditText>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@+id/editTxtSearchRecipe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recylerViewRecipeFavourite"
+        android:scrollbars="vertical">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

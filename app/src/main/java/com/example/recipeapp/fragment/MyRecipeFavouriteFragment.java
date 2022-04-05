@@ -2,24 +2,22 @@ package com.example.recipeapp.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.recipeapp.FoodData;
 import com.example.recipeapp.MyApdater;
 import com.example.recipeapp.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,29 +26,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyRecipeFragment extends Fragment {
+public class MyRecipeFavouriteFragment extends Fragment {
     RecyclerView mReCyclerView;
     ArrayList<FoodData> myFoodList;
-    DatabaseReference databaseReference;
     MyApdater myApdater;
     private DatabaseReference mDatabase;
+    private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
-    private String userId;
     ProgressDialog progressDialog;
     EditText txtSearch;
+    private String user_id;
 
-    FloatingActionButton uploadRecipeBtn;
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_recipe, container, false);
-        databaseReference = FirebaseDatabase.getInstance().getReference("user_id");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_my_recipe_favourite, container, false);
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("user_id").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userId = snapshot.getValue().toString();
+                user_id = snapshot.getValue().toString();
                 showRecipes(view);
-                Log.d("tag", "id" + userId);
             }
 
             @Override
@@ -58,16 +54,14 @@ public class MyRecipeFragment extends Fragment {
 
             }
         });
-
-        getActivity().setTitle("Công thức của tôi");
-
+        getActivity().setTitle("Công thức yêu thích");
         return view;
     }
 
     public void showRecipes(View view)
     {
-        mDatabase = FirebaseDatabase.getInstance().getReference("Recipe");
-        mReCyclerView = (RecyclerView) view.findViewById(R.id.recylerViewMyRecipe);
+        mDatabase = FirebaseDatabase.getInstance().getReference("MyRecipeFavourite");
+        mReCyclerView = (RecyclerView) view.findViewById(R.id.recylerViewRecipeFavourite);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         mReCyclerView.setLayoutManager(gridLayoutManager);
 
@@ -83,16 +77,16 @@ public class MyRecipeFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 myFoodList.clear();
-                Log.d("tag", "id2" + userId);
+
                 for (DataSnapshot item: snapshot.getChildren()) {
                     FoodData foodData = item.getValue(FoodData.class);
-                    if (foodData.getUserId().equals(userId)) {
-                        Log.d("tag", "id2 :" + userId);
+                    if (foodData.getUserId().equals(user_id) == true) {
                         foodData.setKey(item.getKey());
                         myFoodList.add(foodData);
                     }
                 }
                 myApdater.notifyDataSetChanged();
+
                 progressDialog.dismiss();
             }
 

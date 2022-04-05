@@ -5,11 +5,10 @@
     android:orientation="horizontal">
 
     <TextView
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
         android:id="@+id/tvIngredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"/>
 
 </LinearLayout>

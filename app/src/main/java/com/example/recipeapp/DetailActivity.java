@@ -9,6 +9,7 @@ import com.example.recipeapp.fragment.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -33,19 +34,20 @@ public class DetailActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.nav_view);
         viewPager = findViewById(R.id.viewPager);
         setUpViewPager();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Chi tiết");
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_detail:
-                        Bundle bundle = getIntent().getBundleExtra("data");
-                        DetailFragment detailFragment = new DetailFragment();
-                        detailFragment.setArguments(bundle);
                         viewPager.setCurrentItem(0);
+                        actionBar.setTitle("Chi tiết");
                         break;
                     case R.id.navigation_comment:
-                        viewPager.setCurrentItem(0);
+                        viewPager.setCurrentItem(1);
+                        actionBar.setTitle("Bình luận");
                         break;
                 }
                 return true;

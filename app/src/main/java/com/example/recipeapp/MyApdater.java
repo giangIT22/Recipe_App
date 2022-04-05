@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.recipeapp.fragment.DetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +55,8 @@ public class MyApdater extends RecyclerView.Adapter<FoodViewHolder>{
                 bundle.putString("description", myFoodList.get(holder.getAdapterPosition()).getDescription());
                 bundle.putString("key", myFoodList.get(holder.getAdapterPosition()).getKey());
                 intent.putExtra("data", bundle);
+                DetailFragment detailFragment = new DetailFragment();
+                detailFragment.setArguments(bundle);
                 mContext.startActivity(intent);
             }
         });

@@ -65,19 +65,33 @@
                 android:layout_gravity="center" />
 
             <TextView
+                android:layout_width="match_parent"
+                android:text="Tên bánh"
+                android:paddingLeft="20dp"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
+            <TextView
                     android:id="@+id/tvDetailName"
                     android:layout_width="match_parent"
                     android:text="Title"
                     android:padding="20dp"
                     android:textSize="19sp"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bottom"/>
+                    android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="match_parent"
+                android:text="Mô tả"
+                android:paddingLeft="20dp"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tvDetailDescription"
                 android:layout_width="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:text="Description"
-                android:padding="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="15dp"
                 android:textSize="19sp"
                 android:layout_height="wrap_content"/>
 
@@ -86,22 +100,24 @@
                 android:text="Nguyên liệu"
                 android:textStyle="bold"
                 android:textSize="19sp"
-                android:padding="8dp"
+                android:paddingLeft="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
+
+            <!--Stép-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_ingredents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"/>
+                />
 
-            <!--Stép-->
             <TextView
                 android:text="Các bước"
                 android:textStyle="bold"
                 android:textSize="19sp"
-                android:padding="8dp"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
@@ -109,7 +125,7 @@
                 android:id="@+id/recycler_steps"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"/>
+                />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

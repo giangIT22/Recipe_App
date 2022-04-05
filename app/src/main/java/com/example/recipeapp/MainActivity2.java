@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.example.recipeapp.fragment.DetailFragment;
 import com.example.recipeapp.fragment.HomeFragment;
+import com.example.recipeapp.fragment.MyRecipeFavouriteFragment;
 import com.example.recipeapp.fragment.MyRecipeFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -84,14 +85,17 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
                 currentFragment = FRAGMENT_HOME;
             }
         } else if (id == R.id.nav_favourite) {
-
+            if (currentFragment != FRAGMENT_FAVOURITE) {
+                replaceFragment(new MyRecipeFavouriteFragment());
+                currentFragment = FRAGMENT_FAVOURITE;
+            }
         } else if (id == R.id.nav_my_recipe) {
             if (currentFragment != FRAGMENT_MY_RECIPE) {
                 replaceFragment(new MyRecipeFragment());
                 currentFragment = FRAGMENT_MY_RECIPE;
             }
         } else {
-
+            finish();
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

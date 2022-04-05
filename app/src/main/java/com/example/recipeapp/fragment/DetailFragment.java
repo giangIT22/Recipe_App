@@ -3,6 +3,7 @@ package com.example.recipeapp.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,9 +77,13 @@ public class DetailFragment extends Fragment {
 
             }
         });
+
+
         this.showRecipeDetail(view);
         this.addRecipeFavourite(view);
         this.ischeckedFavourite();
+
+//        getActivity().setTitle("Chi tiết");
         return view;
     }
 
@@ -90,6 +96,7 @@ public class DetailFragment extends Fragment {
 
         if (bundle != null) {
             tvName.setText(bundle.getString("name"));
+            tvDescription.setText(bundle.getString("description"));
             this.key =  bundle.getString("key");
             this.urlImage = bundle.getString("image");
             databaseReference = FirebaseDatabase.getInstance().getReference("Recipe");
@@ -176,9 +183,7 @@ public class DetailFragment extends Fragment {
                     foodData.setUserId(userId);
                     foodData.setIngredients(ingredients);
 
-                    String myCurrentDateTime = DateFormat.getDateTimeInstance().
-                            format((Calendar.getInstance().getTime()));
-                    mDatabase.child(key).setValue(foodData);
+                    mDatabase.child(bundle.getString("key")).setValue(foodData);
                     checkBoxFavourite.setBackgroundResource(R.drawable.ic_baseline_favorite_24);
 
                 } else {
@@ -199,7 +204,7 @@ public class DetailFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot item: snapshot.getChildren()) {
                     FoodData foodData = item.getValue(FoodData.class);
-                    if (item.getKey().equals(key) && foodData.getUserId().equals(userId)) {
+                    if (item.getKey().equals(bundle.getString("key")) && foodData.getUserId().equals(userId)) {
                         checkBoxFavourite.setChecked(true);
                     }
                 }
