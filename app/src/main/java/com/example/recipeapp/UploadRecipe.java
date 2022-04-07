@@ -97,6 +97,7 @@ public class UploadRecipe extends AppCompatActivity {
             public void onClick(View view) {
                 ingredients.add(editTextIngredient.getText().toString());
                 ingredientAdapter.notifyDataSetChanged();
+                editTextIngredient.setText("");
             }
         });
 
@@ -105,6 +106,7 @@ public class UploadRecipe extends AppCompatActivity {
             public void onClick(View view) {
                 stepList.add(new MyStep(tvStep.getText().toString()));
                 myStepAdapter.notifyDataSetChanged();
+                tvStep.setText("");
             }
         });
 

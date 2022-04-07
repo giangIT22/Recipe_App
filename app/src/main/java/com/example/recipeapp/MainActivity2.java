@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.recipeapp.fragment.ChangePasswordFragment;
 import com.example.recipeapp.fragment.DetailFragment;
 import com.example.recipeapp.fragment.HomeFragment;
 import com.example.recipeapp.fragment.MyRecipeFavouriteFragment;
@@ -93,6 +94,11 @@ public class MainActivity2 extends AppCompatActivity implements NavigationView.O
             if (currentFragment != FRAGMENT_MY_RECIPE) {
                 replaceFragment(new MyRecipeFragment());
                 currentFragment = FRAGMENT_MY_RECIPE;
+            }
+        } else if (id == R.id.nav_change_pass) {
+            if (currentFragment != FRAGMENT_CHANGE_PASS) {
+                replaceFragment(new ChangePasswordFragment());
+                currentFragment = FRAGMENT_CHANGE_PASS;
             }
         } else {
             finish();
