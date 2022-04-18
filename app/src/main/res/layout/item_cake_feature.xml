@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv_itemCakeFeature"
+    android:layout_marginRight="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imv_imageCake"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@drawable/cake_1"
+            android:scaleType="centerCrop"/>
+        <RelativeLayout
+            android:id="@+id/layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:padding="20dp"
+            android:gravity="bottom">
+            <TextView
+                android:id="@+id/txt_cakeFeatureName"
+                android:text="Cake name"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"/>
+<!--            <TextView-->
+<!--                android:layout_below="@+id/txt_cakeFeatureName"-->
+<!--                android:id="@+id/txt_cakeFeatureAuthor"-->
+<!--                android:text="Cake author"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+<!--            <TextView-->
+<!--                android:layout_below="@+id/txt_cakeFeatureName"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:id="@+id/txt_cakeFeatureTime"-->
+<!--                android:text="20 Min"-->
+<!--                android:textSize="14sp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
+        </RelativeLayout>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

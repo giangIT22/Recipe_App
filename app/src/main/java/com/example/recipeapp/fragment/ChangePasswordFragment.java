@@ -103,6 +103,8 @@ public class ChangePasswordFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             Toast.makeText(getActivity(), "Cập nhật mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(ChangePasswordFragment.this.getContext(), LoginActivity.class);
+                            startActivity(i);
                         }
                     });
                 }

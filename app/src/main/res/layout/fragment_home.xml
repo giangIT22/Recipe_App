@@ -1,40 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".MainActivity2">
-
-    <EditText
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search"
-        android:textSize="22sp"
-        android:id="@+id/editTxtSearchRecipe"
-        android:layout_margin="15dp">
+        android:layout_height="match_parent">
 
-    </EditText>
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_alignParentTop="true"
+            app:iss_auto_cycle="true"
+            app:iss_delay="0"
+            app:iss_period="1500"
+            app:iss_text_align="center" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@+id/editTxtSearchRecipe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recylerView"
-        android:scrollbars="vertical">
+        <LinearLayout
+            android:id="@+id/layoutFeature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_below="@+id/image_slider"
+            android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                android:text="Featured"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/ic_baseline_arrow_drop_up_24"
-        android:id="@+id/uploadRecipe">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_cakeFeature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layoutFeature"
+            android:hint="Search"
+            android:textSize="22sp"
+            android:id="@+id/editTxtSearchRecipe"
+            android:layout_margin="15dp">
 
-</RelativeLayout>
+        </EditText>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@+id/editTxtSearchRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recylerView"
+            android:scrollbars="vertical">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_baseline_arrow_drop_up_24"
+            android:id="@+id/uploadRecipe">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    </RelativeLayout>
+</ScrollView>

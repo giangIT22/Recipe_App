@@ -14,8 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.recipeapp.CakeFeatureAdapter;
 import com.example.recipeapp.FoodData;
 import com.example.recipeapp.MainActivity2;
 import com.example.recipeapp.MyApdater;
@@ -29,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
     RecyclerView mReCyclerView;
@@ -39,6 +45,10 @@ public class HomeFragment extends Fragment {
     ProgressDialog progressDialog;
     EditText txtSearch;
 
+    private ImageSlider mImagesSlider;
+    private CakeFeatureAdapter cakeFeatureAdapter;
+    private RecyclerView mRCVCakeFeature;
+
     FloatingActionButton uploadRecipeBtn;
 
     @Nullable
@@ -46,6 +56,10 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         this.showRecipes(view);
+
+//        Slider
+        initSlider(view);
+        initCakeFeature(view);
 
         //redirect to upload recipe info screen
         uploadRecipeBtn = (FloatingActionButton) view.findViewById(R.id.uploadRecipe) ;
@@ -59,6 +73,50 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    private void initSlider(View view){
+        mImagesSlider = view.findViewById(R.id.image_slider);
+        List<SlideModel> list = new ArrayList<>();
+        list.add(new SlideModel(R.drawable.cake_2,"Find your favorite cake", ScaleTypes.CENTER_CROP));
+        list.add(new SlideModel(R.drawable.cake_3, "Better experience with mobile app", ScaleTypes.CENTER_CROP));
+
+        mImagesSlider.setImageList(list);
+    }
+
+    private void initCakeFeature(View view) {
+        mDatabase = FirebaseDatabase.getInstance().getReference("Recipe");
+        mRCVCakeFeature = view.findViewById(R.id.rcv_cakeFeature);
+
+        cakeFeatureAdapter = new CakeFeatureAdapter(getContext());
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        mRCVCakeFeature.setLayoutManager(linearLayoutManager);
+
+        List<FoodData> listCake = new ArrayList<>();
+
+
+        mRCVCakeFeature.setAdapter(cakeFeatureAdapter);
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listCake.clear();
+
+                for (DataSnapshot item: snapshot.getChildren()) {
+                    FoodData foodData = item.getValue(FoodData.class);
+                    foodData.setKey(item.getKey());
+                    listCake.add(foodData);
+                }
+                cakeFeatureAdapter.setData(listCake);
+
+//                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+//                progressDialog.dismiss();
+            }
+        });
+    }
 
     public void showRecipes(View view)
     {

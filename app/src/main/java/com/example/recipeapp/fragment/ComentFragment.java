@@ -70,6 +70,8 @@ public class ComentFragment extends Fragment {
                         format((Calendar.getInstance().getTime()));
                 DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Comments");
                 mDatabase.child(myCurrentDateTime).setValue(comment);
+
+                content.setText("");
             }
         });
         showComments(view);
